@@ -10,9 +10,10 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
 
+let teamMembers = [];
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
-const teamManagerQuestions= [
+const teamManagerInfo= [
   {
     type: "input",
     name: "teamManagerName",
@@ -30,22 +31,52 @@ const teamManagerQuestions= [
   },
   {
     type: "input",
-    name: "office number",
+    name: "officeNumber",
     message: "Enter your office number"
   }
 
 ]
 // add validation to ensure that user input is in the proper format.
 //use inquirer 
-inquirer.prompt( teamManagerQuestions).then(answer =>{
+inquirer.prompt( teamManagerInfo).then(answers =>{
+  console.log(answers);
+  const newManagerAnswers = new Manager(answers.teamManagerName, answers.employeeID, answers.email, answers.officeNumber);
+  console.log(newManagerAnswers);
+  teamMembers.push(newManagerAnswers);
+  startMenu();
 
-  let data = createData(answer);
-  fs.writeFileSync(`${answer}`, data)
+
 });
 
 
+function startMenu(){
+  inquirer.prompt([
+    {
+      type: 'list',
+      message: "Pick one of three:",
+      choices: ['Add an engineer', 'Add an intern', 'Finish building the team'],
+      name: 'menuOptions'
+    }
+  ])
 
-// after that the user is presented with a menu with the option to:
-// Add an engineer
-// Add an intern
-// Finish building the team
+}
+
+function addEngineer(){
+
+}
+
+function addIntern(){
+
+}
+
+function finishBuildingTheTeam(){
+
+}
+
+
+
+// fs.appendFile(outputPath, render, function (err) {
+//   if (err) throw err;
+//   console.log('Saved!');
+// });
+
