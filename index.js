@@ -116,7 +116,7 @@ function startMenu(){
     if(val.menuOptions === 'Add an engineer'){
       inquirer.prompt(engineerInfo).then(answers => {
           //create instance obj of Engineer class
-       const newEngineerAnswers = new Engineer(answers.engineerName, answers.employeeID, answers.email, answers.gitHubUsername);
+       const newEngineerAnswers = new Engineer(answers.engineerName, answers.engineerID, answers.email, answers.gitHubUsername);
        console.log(newEngineerAnswers)
        teamMembers.push(newEngineerAnswers);
        console.log(teamMembers);
@@ -133,23 +133,24 @@ function startMenu(){
     })
     } else {
       finishBuildingTheTeam()
+      // html is generated 
+      fs.appendFile(outputPath, render, function (err) {
+        if (err) throw err;
+        console.log('Saved!');
+      });
+
     }
   })
 
 }
 
-
 function finishBuildingTheTeam(){
-  //exit application and html is generated 
-
-  // fs.appendFile(outputPath, render, function (err) {
-//   if (err) throw err;
-//   console.log('Saved!');
-// });
-
-
+  //exit application
+  process.exit(0);
 
 }
+
+
 
 
 
