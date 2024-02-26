@@ -13,7 +13,8 @@ const { start } = require("repl");
 
 let teamMembers = [];
 
-// TODO: Write Code to gather information about the development team members, and render the HTML file.
+// code to gather information about the development team members
+//  validation is added  to ensure that user input is in the proper format.
 const teamManagerInfo= [
   {
     type: "input",
@@ -92,7 +93,7 @@ const teamManagerInfo= [
 
   ]
 
-// BONUS task - add validation to ensure that user input is in the proper format.
+
 //use inquirer  to prompt manager info
 inquirer.prompt( teamManagerInfo).then(answers =>{
   console.log(answers);
@@ -103,6 +104,7 @@ inquirer.prompt( teamManagerInfo).then(answers =>{
   startMenu();
 });
 
+// function that presentes the user with a menu of options
 function startMenu(){
   inquirer.prompt([
     {
@@ -112,6 +114,7 @@ function startMenu(){
       name: 'menuOptions'
     }
   ])
+  // depending on selected option, use inquirer  to prompt instance of Engineer, Intern or finish building the team
   .then(val => {
     if(val.menuOptions === 'Add an engineer'){
       inquirer.prompt(engineerInfo).then(answers => {
@@ -132,22 +135,33 @@ function startMenu(){
      startMenu();
     })
     } else {
+      fs.writeFileSync(outputPath, render(teamMembers), "UTF-8"
+      //   if (err) {
+      //     console.error("Error writing file:", err);
+      //   } else {
+      //     console.log("team.html created successfully!");
+      //   }
+      
+      
+      // }
+      )
+
       finishBuildingTheTeam()
       // and render team.html
       // generateHTML()
-      fs.writeFileSync(outputPath, render, "utf-8");
-
-      
     }
-  })
-
+  
+    })
 }
 
 function finishBuildingTheTeam(){
   //exit application
   process.exit(0);
 
+
 }
+
+
 
 
 // function generateHTML() {
