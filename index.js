@@ -133,12 +133,11 @@ function startMenu(){
     })
     } else {
       finishBuildingTheTeam()
-      // html is generated 
-      fs.appendFile(outputPath, render, function (err) {
-        if (err) throw err;
-        console.log('Saved!');
-      });
+      // and render team.html
+      // generateHTML()
+      fs.writeFileSync(outputPath, render, "utf-8");
 
+      
     }
   })
 
@@ -150,6 +149,10 @@ function finishBuildingTheTeam(){
 
 }
 
+
+// function generateHTML() {
+//   fs.writeFileSync(outputPath, render, "utf-8");
+// }
 
 
 
