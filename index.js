@@ -95,10 +95,8 @@ const teamManagerInfo= [
 
 //use inquirer  to prompt manager info
 inquirer.prompt( teamManagerInfo).then(answers =>{
-  console.log(answers);
   //create instance obj of Manager class
   const newManagerAnswers = new Manager(answers.teamManagerName, answers.employeeID, answers.email, answers.officeNumber);
-  console.log(newManagerAnswers);
   teamMembers.push(newManagerAnswers);
   startMenu();
 });
@@ -119,18 +117,14 @@ function startMenu(){
       inquirer.prompt(engineerInfo).then(answers => {
           //create instance obj of Engineer class
       const newEngineerAnswers = new Engineer(answers.engineerName, answers.engineerID, answers.email, answers.gitHubUsername);
-      console.log(newEngineerAnswers)
       teamMembers.push(newEngineerAnswers);
-      console.log(teamMembers);
       startMenu()
       })
     } else if (val.menuOptions === 'Add an intern'){
       inquirer.prompt(internInfo).then(answers => {
         //create instance obj of Engineer class
       const newInternAnswers = new Intern(answers.internName, answers.internID, answers.email, answers.school);
-      console.log(newInternAnswers)
       teamMembers.push(newInternAnswers);
-      console.log(teamMembers);
       startMenu();
     })
     } else {
