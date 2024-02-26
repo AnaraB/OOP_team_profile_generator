@@ -93,7 +93,6 @@ const teamManagerInfo= [
 
   ]
 
-
 //use inquirer  to prompt manager info
 inquirer.prompt( teamManagerInfo).then(answers =>{
   console.log(answers);
@@ -119,36 +118,25 @@ function startMenu(){
     if(val.menuOptions === 'Add an engineer'){
       inquirer.prompt(engineerInfo).then(answers => {
           //create instance obj of Engineer class
-       const newEngineerAnswers = new Engineer(answers.engineerName, answers.engineerID, answers.email, answers.gitHubUsername);
-       console.log(newEngineerAnswers)
-       teamMembers.push(newEngineerAnswers);
-       console.log(teamMembers);
-       startMenu()
+      const newEngineerAnswers = new Engineer(answers.engineerName, answers.engineerID, answers.email, answers.gitHubUsername);
+      console.log(newEngineerAnswers)
+      teamMembers.push(newEngineerAnswers);
+      console.log(teamMembers);
+      startMenu()
       })
     } else if (val.menuOptions === 'Add an intern'){
       inquirer.prompt(internInfo).then(answers => {
         //create instance obj of Engineer class
-     const newInternAnswers = new Intern(answers.internName, answers.internID, answers.email, answers.school);
-     console.log(newInternAnswers)
-     teamMembers.push(newInternAnswers);
-     console.log(teamMembers);
-     startMenu();
+      const newInternAnswers = new Intern(answers.internName, answers.internID, answers.email, answers.school);
+      console.log(newInternAnswers)
+      teamMembers.push(newInternAnswers);
+      console.log(teamMembers);
+      startMenu();
     })
     } else {
-      fs.writeFileSync(outputPath, render(teamMembers), "UTF-8"
-      //   if (err) {
-      //     console.error("Error writing file:", err);
-      //   } else {
-      //     console.log("team.html created successfully!");
-      //   }
-      
-      
-      // }
-      )
+      fs.writeFileSync(outputPath, render(teamMembers), "UTF-8");
 
       finishBuildingTheTeam()
-      // and render team.html
-      // generateHTML()
     }
   
     })
@@ -157,16 +145,9 @@ function startMenu(){
 function finishBuildingTheTeam(){
   //exit application
   process.exit(0);
-
-
 }
 
 
-
-
-// function generateHTML() {
-//   fs.writeFileSync(outputPath, render, "utf-8");
-// }
 
 
 
