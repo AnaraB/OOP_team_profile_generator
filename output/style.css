@@ -1,3 +1,7 @@
 .team-heading{
  background-color: rgba(249, 62, 62, 0.943);
 }
+
+.employee-card{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
